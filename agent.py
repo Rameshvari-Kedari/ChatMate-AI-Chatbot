@@ -1,5 +1,3 @@
-# agent.py
-
 import os
 
 from dotenv import load_dotenv
@@ -9,9 +7,7 @@ from langchain.agents import create_agent
 from tools import tools
 
 
-# ============================================================
-# LOAD ENVIRONMENT VARIABLES
-# ============================================================
+# load the api key from .env file
 
 load_dotenv()
 
@@ -25,9 +21,7 @@ if not GROQ_API_KEY:
     )
 
 
-# ============================================================
-# CREATE LLM
-# ============================================================
+# create LLM nodel
 
 llm = ChatGroq(
     api_key=GROQ_API_KEY,
@@ -36,16 +30,14 @@ llm = ChatGroq(
 )
 
 
-# ============================================================
-# CREATE AGENT
-# ============================================================
+# create agent
 
 agent = create_agent(
     model=llm,
     tools=tools,
     system_prompt="""
-You are ChatMate, a helpful AI assistant.
 
+You are ChatMate, a helpful AI assistant.
 You have access to several tools.
 
 TOOL RULES:
@@ -97,34 +89,38 @@ Always use the appropriate tool when it is clearly required.
 )
 
 
-# ============================================================
-# TEST AGENT
-# ============================================================
 
-if __name__ == "__main__":
 
-    print("\nChatMate Agent Test")
-    print("-" * 40)
 
-    question = input("You: ")
 
-    try:
 
-        response = agent.invoke(
-            {
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": question
-                    }
-                ]
-            }
-        )
 
-        answer = response["messages"][-1].content
 
-        print("\nChatMate:", answer)
 
-    except Exception as e:
+# if __name__ == "__main__":
 
-        print("\nError:", e)
+#     print("\nChatMate Agent Test")
+#     print("-" * 40)
+
+#     question = input("You: ")
+
+#     try:
+
+#         response = agent.invoke(
+#             {
+#                 "messages": [
+#                     {
+#                         "role": "user",
+#                         "content": question
+#                     }
+#                 ]
+#             }
+#         )
+
+#         answer = response["messages"][-1].content
+
+#         print("\nChatMate:", answer)
+
+#     except Exception as e:
+
+#         print("\nError:", e)

@@ -1,13 +1,7 @@
-# app.py
-
 import streamlit as st
-
 from agent import agent
 
-
-# ============================================================
-# PAGE CONFIGURATION
-# ============================================================
+# page configuration
 
 st.set_page_config(
     page_title="ChatMate",
@@ -15,10 +9,7 @@ st.set_page_config(
     layout="centered"
 )
 
-
-# ============================================================
-# TITLE
-# ============================================================
+# title
 
 st.title("🤖 ChatMate")
 
@@ -27,18 +18,14 @@ st.caption(
 )
 
 
-# ============================================================
-# SESSION CHAT HISTORY
-# ============================================================
+# session chat history
 
 if "messages" not in st.session_state:
 
     st.session_state.messages = []
 
 
-# ============================================================
-# DISPLAY PREVIOUS MESSAGES
-# ============================================================
+# previous msg
 
 for message in st.session_state.messages:
 
@@ -47,24 +34,17 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 
-# ============================================================
-# CHAT INPUT
-# ============================================================
+
+# input box
 
 question = st.chat_input(
     "Ask ChatMate anything..."
 )
 
 
-# ============================================================
-# PROCESS QUESTION
-# ============================================================
+# process question
 
 if question:
-
-    # --------------------------------------------------------
-    # Display user message
-    # --------------------------------------------------------
 
     with st.chat_message("user"):
 
@@ -78,9 +58,7 @@ if question:
     )
 
 
-    # --------------------------------------------------------
-    # Generate AI response
-    # --------------------------------------------------------
+    # generate Ai response
 
     with st.chat_message("assistant"):
 
