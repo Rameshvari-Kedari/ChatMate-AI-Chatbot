@@ -14,7 +14,7 @@ st.set_page_config(
 st.title("🤖 ChatMate")
 
 st.caption(
-    "Simple AI Chatbot with Tools"
+    "Simple AI Agent. Powerful Tools. Smarter Conversations."
 )
 
 
