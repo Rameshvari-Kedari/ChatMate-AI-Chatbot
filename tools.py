@@ -10,9 +10,7 @@ from langchain.tools import tool
 from pydantic import BaseModel, Field
 
 
-# ============================================================
-# CALCULATOR
-# ============================================================
+# calculator
 
 class CalculatorInput(BaseModel):
     expression: str = Field(
@@ -111,9 +109,9 @@ def calculator(expression: str) -> str:
         return "Error: Invalid mathematical expression."
 
 
-# ============================================================
-# WEB SEARCH
-# ============================================================
+
+
+# web sewarch tool
 
 class WebSearchInput(BaseModel):
     query: str = Field(
@@ -173,9 +171,7 @@ def web_search(query: str) -> str:
         return f"Web search failed: {str(e)}"
 
 
-# ============================================================
-# CURRENT TIME
-# ============================================================
+# current date time tool
 
 @tool
 def get_current_time() -> str:
@@ -195,9 +191,7 @@ def get_current_time() -> str:
     )
 
 
-# ============================================================
-# CELSIUS → FAHRENHEIT
-# ============================================================
+# temperature conversion tools
 
 class CelsiusInput(BaseModel):
     celsius: float = Field(
@@ -216,9 +210,7 @@ def celsius_to_fahrenheit(celsius: float) -> str:
     return f"{fahrenheit:.2f} °F"
 
 
-# ============================================================
-# FAHRENHEIT → CELSIUS
-# ============================================================
+#  temperature conversion tools
 
 class FahrenheitInput(BaseModel):
     fahrenheit: float = Field(
@@ -237,9 +229,8 @@ def fahrenheit_to_celsius(fahrenheit: float) -> str:
     return f"{celsius:.2f} °C"
 
 
-# ============================================================
-# KILOMETERS → MILES
-# ============================================================
+
+# kilometer → miles
 
 class KilometerInput(BaseModel):
     kilometers: float = Field(
@@ -258,9 +249,8 @@ def kilometers_to_miles(kilometers: float) -> str:
     return f"{miles:.3f} miles"
 
 
-# ============================================================
-# MILES → KILOMETERS
-# ============================================================
+
+# mile → kilometers
 
 class MileInput(BaseModel):
     miles: float = Field(
@@ -279,9 +269,7 @@ def miles_to_kilometers(miles: float) -> str:
     return f"{kilometers:.3f} km"
 
 
-# ============================================================
-# TEXT ANALYZER
-# ============================================================
+# text analyzer tool
 
 class TextInput(BaseModel):
     text: str = Field(
@@ -312,9 +300,7 @@ def analyze_text(text: str) -> str:
     )
 
 
-# ============================================================
-# ALL TOOLS
-# ============================================================
+# all tools list
 
 tools = [
     calculator,
