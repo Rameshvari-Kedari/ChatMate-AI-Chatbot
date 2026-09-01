@@ -3,6 +3,7 @@
 import ast
 import operator
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from ddgs import DDGS
 from langchain.tools import tool
@@ -129,6 +130,7 @@ def web_search(query: str) -> str:
     Search the internet for current or recent information.
 
     Always provide the search query using the 'query' argument.
+
     Use this tool for latest news, current events, recent facts,
     and information that requires internet search.
     """
@@ -153,7 +155,9 @@ def web_search(query: str) -> str:
         for result in results:
 
             title = result.get("title", "No title")
+
             url = result.get("href", "")
+
             description = result.get("body", "")
 
             output.append(
@@ -176,11 +180,18 @@ def web_search(query: str) -> str:
 @tool
 def get_current_time() -> str:
     """
-    Return the current date and time.
+    Return the current date and time in India Standard Time (IST).
+
+    The timezone is explicitly set to Asia/Kolkata so the result
+    does not depend on the server's local timezone.
     """
 
-    return datetime.now().strftime(
-        "%Y-%m-%d %H:%M:%S"
+    india_time = datetime.now(
+        ZoneInfo("Asia/Kolkata")
+    )
+
+    return india_time.strftime(
+        "%Y-%m-%d %H:%M:%S IST"
     )
 
 
@@ -285,10 +296,12 @@ def analyze_text(text: str) -> str:
     """
 
     words = len(text.split())
+
     characters = len(text)
 
     sentences = sum(
-        1 for character in text
+        1
+        for character in text
         if character in ".!?"
     )
 
