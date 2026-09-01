@@ -68,6 +68,8 @@ Use web_search for:
 - recent news
 - today's information
 - information from the internet
+- For current/latest questions, ALWAYS use the web search tool.
+Never answer from memory
 
 IMPORTANT:
 The web_search tool requires exactly one input:
